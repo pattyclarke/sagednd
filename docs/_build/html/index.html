@@ -1,0 +1,174 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Welcome to Sage DnD’s documentation! &#8212; Sage DnD 0.1.0 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="module-sagednd.dnd_ability_rolls">
+<span id="welcome-to-sage-dnd-s-documentation"></span><h1>Welcome to Sage DnD’s documentation!<a class="headerlink" href="#module-sagednd.dnd_ability_rolls" title="Permalink to this headline">¶</a></h1>
+<p>DnD 5e Ability Rolls [DnD5e]</p>
+<p>This module produces a list of all ability rolls.
+These are four consecutive rolls of six sided die.
+SageMath is used for syntax, since I like it.</p>
+<p>The module also has a function that computes the DnD ability roll score.
+The score of an ability roll is the sum of the three highest rolls.</p>
+<p>EXAMPLES</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="kn">import</span> <span class="nn">sagednd.dnd_ability_rolls</span>
+<span class="n">sage</span><span class="p">:</span> <span class="n">get_dnd_ability_rolls</span> <span class="o">=</span> <span class="n">sagednd</span><span class="o">.</span><span class="n">dnd_ability_rolls</span><span class="o">.</span><span class="n">get_dnd_ability_rolls</span>
+<span class="n">sage</span><span class="p">:</span> <span class="n">dnd_ability_roll_score</span> <span class="o">=</span> <span class="n">sagednd</span><span class="o">.</span><span class="n">dnd_ability_rolls</span><span class="o">.</span><span class="n">dnd_ability_roll_score</span>
+<span class="n">sage</span><span class="p">:</span> <span class="n">rolls</span> <span class="o">=</span> <span class="n">get_dnd_ability_rolls</span><span class="p">()</span>
+<span class="n">sage</span><span class="p">:</span> <span class="n">roll_scores</span> <span class="o">=</span> <span class="p">[</span><span class="n">dnd_ability_roll_score</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">rolls</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>REFERENCES:</p>
+<table class="docutils citation" frame="void" id="dnd5e" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[DnD5e]</td><td>Dungeons and Dragons (5th edition)
+Wizards of the Coast
+January 2012.</td></tr>
+</tbody>
+</table>
+<p>AUTHORS:</p>
+<ul class="simple">
+<li>Patrick Clarke: initial implementation</li>
+</ul>
+<dl class="function">
+<dt id="sagednd.dnd_ability_rolls.get_dnd_ability_rolls">
+<code class="descclassname">sagednd.dnd_ability_rolls.</code><code class="descname">get_dnd_ability_rolls</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sagednd.dnd_ability_rolls.get_dnd_ability_rolls" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the list of all possible ability rolls for a single ability.</p>
+<p>The rolls are read from a json file, if it exists.
+Otherwise, the rolls are computed returned and the json file is created.</p>
+<p>EXAMPLES</p>
+<p>sage: load(“dnd_ability_rolls.sage”)
+sage: rolls = get_dnd_ability_rolls()</p>
+<p>TESTS</p>
+<p>sage: len(get_dnd_ability_rolls()) == 6^4
+True</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="sagednd.dnd_ability_rolls.dnd_ability_roll_score">
+<code class="descclassname">sagednd.dnd_ability_rolls.</code><code class="descname">dnd_ability_roll_score</code><span class="sig-paren">(</span><em>roll</em><span class="sig-paren">)</span><a class="headerlink" href="#sagednd.dnd_ability_rolls.dnd_ability_roll_score" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the ability roll score of an ability roll.
+This is the sum of the top three numbers in the roll.</p>
+<p>EXAMPLES</p>
+<p>sage: load(“dnd_ability_rolls.sage”)
+sage: rolls = get_dnd_ability_rolls()
+sage: roll_scores = [dnd_roll_score(r) for r in rolls]</p>
+<p>TESTS</p>
+<p>sage: rolls = get_dnd_ability_rolls()
+sage: roll_num = len(rolls)
+sage: r = ZZ.random_element(0, roll_num)
+sage: dnd_roll_score(rolls[r]) &lt;= 18
+True
+sage: 3 &lt;= dnd_roll_score(rolls[r])
+True</p>
+</dd></dl>
+
+<div class="toctree-wrapper compound">
+</div>
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></li>
+<li><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></li>
+<li><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></li>
+</ul>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="#">Sage DnD</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Patrick Clarke.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
