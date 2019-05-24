@@ -54,7 +54,11 @@ The project has the GNU GENERAL PUBLIC LICENSE found in the file LICENSE.
 Version Control
 ---------------
 
-XXXXXXXXXX
+./ is a Git repository. It was created by making a .gitignore file and then entering
+
+    $ git init
+    $ git add .
+    $ git commit -m "First commit"
 
 Environment
 -----------
@@ -114,7 +118,7 @@ Project Structure
   - ./LICENSE
 
 - Version Control:
-  - .gitignore
+  - ./.gitignore
     
 - Environment:
   - ./environment.yml
