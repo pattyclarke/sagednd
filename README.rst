@@ -59,7 +59,9 @@ Version Control
     $ git init
     $ git add .
     $ git commit -m "First commit"
-
+    $ git config --global core.editor "emacs -nw"
+    $ git commit -a
+    
 Environment
 -----------
 
