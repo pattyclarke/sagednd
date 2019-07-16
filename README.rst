@@ -77,7 +77,9 @@ MAINTENANCE: Follow
         'Git Tutorial for Beginners: Command-Line Fundamentals' 
 by Corey Shafer.
 
-    $ XXX git ??? XXX
+    $ git add -A
+    $ git commit
+    $ git push origin master
 
 CREATION: It was created by making a .gitignore file and then entering
 

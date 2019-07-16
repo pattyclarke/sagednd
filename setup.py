@@ -7,5 +7,5 @@ setup(
    author='Patrick Clarke',
    author_email='pattyclarke@gmail.com',
    packages=['sagednd'],  #same as name
-   install_requires=['sage', 'json'], #external packages as dependencies
+   install_requires=['sage'], #external packages as dependencies
 )
