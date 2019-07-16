@@ -73,7 +73,9 @@ Version Control
 
 ./ is a Git repository.
 
-MAINTENANCE:
+MAINTENANCE: Follow
+        'Git Tutorial for Beginners: Command-Line Fundamentals' 
+by Corey Shafer.
 
     $ XXX git ??? XXX
 
