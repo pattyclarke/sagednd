@@ -10,9 +10,6 @@ The score of an ability roll is the sum of the three highest rolls.
 
 EXAMPLES ::
 
-    sage: import sagednd.dnd_ability_rolls
-    sage: get_dnd_ability_rolls = sagednd.dnd_ability_rolls.get_dnd_ability_rolls
-    sage: dnd_ability_roll_score = sagednd.dnd_ability_rolls.dnd_ability_roll_score
     sage: rolls = get_dnd_ability_rolls()
     sage: roll_scores = [dnd_ability_roll_score(r) for r in rolls]
 
@@ -39,14 +36,13 @@ def get_dnd_ability_rolls():
 
     EXAMPLES ::
     
-    sage: load("dnd_ability_rolls.sage")                      
-    sage: rolls = get_dnd_ability_rolls()
+        sage: rolls = get_dnd_ability_rolls()
 
     TESTS ::
     
-    sage: len(get_dnd_ability_rolls()) == 6^4
-    True
-    
+        sage: len(get_dnd_ability_rolls()) == 6^4
+        True
+
     """
     try:
         # Reading JSON content from a file
@@ -72,19 +68,18 @@ def dnd_ability_roll_score(roll):
 
     EXAMPLES ::
     
-    sage: load("dnd_ability_rolls.sage")
-    sage: rolls = get_dnd_ability_rolls()
-    sage: roll_scores = [dnd_roll_score(r) for r in rolls]
+        sage: rolls = get_dnd_ability_rolls()
+        sage: roll_scores = [dnd_ability_roll_score(r) for r in rolls]
 
     TESTS ::
     
-    sage: rolls = get_dnd_ability_rolls()
-    sage: roll_num = len(rolls)
-    sage: r = ZZ.random_element(0, roll_num)
-    sage: dnd_roll_score(rolls[r]) <= 18
-    True
-    sage: 3 <= dnd_roll_score(rolls[r])
-    True
+        sage: rolls = get_dnd_ability_rolls()
+        sage: roll_num = len(rolls)
+        sage: r = ZZ.random_element(0, roll_num)
+        sage: dnd_ability_roll_score(rolls[r]) <= 18
+        True
+        sage: 3 <= dnd_ability_roll_score(rolls[r])
+        True
 
     """
     return sum(roll) - min(roll)
